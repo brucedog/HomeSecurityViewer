@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A730F8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{B73DFB23-C5AB-45C4-8FEC-C498726BCBA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B73DFB23-C5AB-45C4-8FEC-C498726BCBA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B73DFB23-C5AB-45C4-8FEC-C498726BCBA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

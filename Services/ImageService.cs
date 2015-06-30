@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Accord.Vision.Detection;
 using Accord.Vision.Detection.Cascades;
 using Interfaces;
@@ -31,10 +32,19 @@ namespace Services
             if(bitmap == null)
                 return false;
 
-            Rectangle[] rec  = _harHaarObjectDetector.ProcessFrame(bitmap);
-            bool result = rec.Length > 0;
+            try
+            {
+                Rectangle[] rec  = _harHaarObjectDetector.ProcessFrame(bitmap);
+                bool result = rec.Length > 0;
 
-            return result;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
+            return false;
         }
     }
 }
