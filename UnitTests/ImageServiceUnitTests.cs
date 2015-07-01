@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
+using Caliburn.Micro;
 using Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Services;
 
 namespace UnitTests
@@ -10,10 +12,12 @@ namespace UnitTests
     {
         private Bitmap _emptyImage;
         private Bitmap _faceImage;
-
+        private IEventAggregator _eventAggregator;
+        
         [TestInitialize]
         public void Setup()
         {
+            _eventAggregator = new Mock<IEventAggregator>().Object;
             _emptyImage = new Bitmap(200, 200);
             _faceImage = new Bitmap(Properties.Resources.face);
         }
@@ -21,7 +25,7 @@ namespace UnitTests
         [TestMethod]
         public void EmptyImageDoesNotContainPerson()
         {
-            IImageService imageService = new ImageService();
+            IImageService imageService = new ImageService(_eventAggregator);
 
             bool result = imageService.ContainsPerson(_emptyImage);
 
@@ -31,7 +35,7 @@ namespace UnitTests
         [TestMethod]
         public void ImageOfPerspmDoesContainPerson()
         {
-            IImageService imageService = new ImageService();
+            IImageService imageService = new ImageService(_eventAggregator);
 
             bool result = imageService.ContainsPerson(_faceImage);
 

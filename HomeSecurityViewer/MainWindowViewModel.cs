@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,14 +18,17 @@ namespace HomeSecurityViewer
     {
         private readonly IWindowManager _windowManager;
         private readonly IEventAggregator _eventAggregator;
-        private ICameraService _cameraService;
+        private readonly ICameraService _cameraService;
+        private ImageSource _image;
+        private ISecurityService _securityService;
 
         public MainWindowViewModel(IWindowManager windowManager, IEventAggregator eventAggregator,
-            ICameraService cameraService)
+            ISecurityService securityService, ICameraService cameraService)
         {
             _windowManager = windowManager;
             _eventAggregator = eventAggregator;
             _cameraService = cameraService;
+            _securityService = securityService;
             DisplayName = "Home Security Viewer";
             Initialize();
         }
@@ -55,7 +55,15 @@ namespace HomeSecurityViewer
 
         public CameraDevice SelectedCameraDevice { get; set; }
 
-        public ImageSource Image { get; set; }
+        public ImageSource Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         public void StartRecording()
         {
@@ -77,20 +85,23 @@ namespace HomeSecurityViewer
 
         public void Handle(Bitmap image)
         {
-            BitmapImage bi = new BitmapImage();
-            using (MemoryStream ms = new MemoryStream())
+            Application.Current.Dispatcher.Invoke(new ThreadStart(delegate
             {
-                image.Save(ms, ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
-                bi.BeginInit();
-                bi.StreamSource = ms;
-                bi.EndInit();
+                BitmapImage bi = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    image.Save(ms, ImageFormat.Bmp);
+                    //ms.Seek(0, SeekOrigin.Begin);
+                    ms.Position = 0;
+                    bi.BeginInit();
+                    bi.StreamSource = ms;
 
-                bi.Freeze();
-            }
+                    bi.CacheOption = BitmapCacheOption.OnLoad;
+                    bi.EndInit();
 
-            Dispatcher.CurrentDispatcher.Invoke(new ThreadStart(delegate
-            {
+                    bi.Freeze();
+                }            
+
                 Image = bi;
             }));
         }

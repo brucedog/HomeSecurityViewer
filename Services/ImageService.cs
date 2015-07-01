@@ -2,6 +2,7 @@
 using System.Drawing;
 using Accord.Vision.Detection;
 using Accord.Vision.Detection.Cascades;
+using Caliburn.Micro;
 using Interfaces;
 
 namespace Services
@@ -10,9 +11,12 @@ namespace Services
     {
         private readonly HaarObjectDetector _harHaarObjectDetector;
         private readonly FaceHaarCascade _cascade;
+        private readonly IEventAggregator _eventAggregator;
 
-        public ImageService()
+        public ImageService(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
             _cascade = new FaceHaarCascade();
             _harHaarObjectDetector = new HaarObjectDetector(_cascade, 30);
             SetupDetector();

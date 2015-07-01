@@ -15,7 +15,6 @@ namespace HomeSecurityViewer
         {
             Initialize();
         }
-
         
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
@@ -43,6 +42,7 @@ namespace HomeSecurityViewer
             _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<ICameraService, CameraService>();
             _container.Singleton<IImageService, ImageService>();
+            _container.Singleton<ISecurityService, SecurityService>();
             // register viewmodels
             _container.Singleton<MainWindowViewModel, MainWindowViewModel>();
         }

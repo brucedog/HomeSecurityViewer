@@ -19,7 +19,7 @@ namespace UnitTests
         [TestInitialize]
         public void Setup()
         {
-            _eventAggregator = new Mock<IEventAggregator>().Object;    
+            _eventAggregator = new Mock<IEventAggregator>().Object;
         }
 
         [TestMethod]

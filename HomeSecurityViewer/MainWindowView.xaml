@@ -4,8 +4,8 @@
         Title="MainWindowView" Height="350" Width="525">
     <Grid Row="3">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -18,11 +18,11 @@
             SelectedValue="{Binding SelectedCameraDevice}"/>
 
         <StackPanel Grid.Row="1">
-            <Button x:Name="StartRecording" Content="Start Recording"/>
-            <Button x:Name="StopRecording" Content="Stop Recording"/>
+            <Button x:Name="StartRecording" MaxWidth="100" Content="Start Recording"/>
+            <Button x:Name="StopRecording" MaxWidth="100"  Content="Stop Recording"/>
         </StackPanel>
 
-        <Image x:Name="Image" Grid.Row="2" MinHeight="100" MinWidth="100"/>
+        <Image x:Name="Image" Grid.Row="2" MinHeight="100" MinWidth="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding Image}"/>
         
     </Grid>
 </Window>

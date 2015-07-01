@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Caliburn.Micro;
@@ -18,7 +19,6 @@ namespace Services
         {
             _eventAggregator = eventAggregator;
         }
-
 
         public IList<CameraDevice> GetAvailableDevices()
         {
@@ -124,7 +124,9 @@ namespace Services
 
         private void NewFrameReceived(object sender, NewFrameEventArgs eventArgs)
         {
-            _eventAggregator.PublishOnCurrentThread(eventArgs.Frame.Clone());
+            Bitmap image = (Bitmap) eventArgs.Frame.Clone();
+
+            _eventAggregator.PublishOnCurrentThread(image);
         }
 
         private void VideoError(object sender, VideoSourceErrorEventArgs eventargs)
