@@ -38,8 +38,8 @@ namespace Services
 
             try
             {
-                Rectangle[] rec  = _harHaarObjectDetector.ProcessFrame(bitmap);
-                bool result = rec.Length > 0;
+                Rectangle[] rectangles = ContainsPersonReturnMarker(bitmap);
+                bool result = rectangles.Length > 0;
 
                 return result;
             }
@@ -49,6 +49,11 @@ namespace Services
             }
 
             return false;
+        }
+
+        public Rectangle[] ContainsPersonReturnMarker(Bitmap bitmap)
+        {
+            return _harHaarObjectDetector.ProcessFrame(bitmap);
         }
     }
 }

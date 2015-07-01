@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Caliburn.Micro;
+using DataTransferObjects;
 using Interfaces;
 
 namespace Services
@@ -28,10 +29,18 @@ namespace Services
         {
             try
             {
-                if (_imageService.ContainsPerson(message))
+                Rectangle[] rectangles = _imageService.ContainsPersonReturnMarker(message);
+                if (rectangles.Length > 0)
                 {
                     // TODO save some where.
                     UploadImage(message);
+
+                    _eventAggregator.PublishOnCurrentThread(
+                        new SecurityImageEventMessage
+                        {
+                            ImageSource = message,
+                            OutlineRectangles = rectangles
+                        });
                 }
             }
             catch (Exception exception)
