@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataTransferObjects;
 
 namespace Interfaces
 {
-    public interface ICameraService
+    public interface ICameraService : IDisposable
     {
         /// <summary>
         /// Gets the available camera devices.

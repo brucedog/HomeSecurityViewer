@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
+using Interfaces;
+using Services;
 
 namespace HomeSecurityViewer
 {
@@ -39,6 +41,8 @@ namespace HomeSecurityViewer
             // register services
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
+            _container.Singleton<ICameraService, CameraService>();
+            _container.Singleton<IImageService, ImageService>();
             // register viewmodels
             _container.Singleton<MainWindowViewModel, MainWindowViewModel>();
         }
@@ -46,6 +50,12 @@ namespace HomeSecurityViewer
         protected override void BuildUp(object instance)
         {
             _container.BuildUp(instance);
+        }
+
+        protected override void OnExit(object sender, EventArgs e)
+        {
+            ICameraService cameraService = _container.GetInstance(typeof(ICameraService), null) as ICameraService;
+            cameraService.Dispose();
         }
     }
 }

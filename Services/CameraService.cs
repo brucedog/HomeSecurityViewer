@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Accord;
+using AForge.Video;
 using AForge.Video.DirectShow;
+using Caliburn.Micro;
 using DataTransferObjects;
 using Interfaces;
 
@@ -10,6 +11,14 @@ namespace Services
     public class CameraService : ICameraService
     {
         private CameraDevice _selectedCamera;
+        private VideoCaptureDevice _videoCaptureDevice;
+        private readonly IEventAggregator _eventAggregator;
+
+        public CameraService(IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
+        }
+
 
         public IList<CameraDevice> GetAvailableDevices()
         {
@@ -25,14 +34,13 @@ namespace Services
                 {
                     VideoCaptureDevice videoCaptureDevice = new VideoCaptureDevice(device.MonikerString);
 
-                    // only add device if it has video capabilites
+                    // only add device if it has video capabilities
                     if (videoCaptureDevice.VideoCapabilities.Length > 0)
                     {                        
                         cameraDevices.Add(
                             new CameraDevice
                             {
                                 Name = device.Name,
-                                Description = device.GetDescription(),
                                 MonikerString = device.MonikerString
                             });
                     }
@@ -50,14 +58,15 @@ namespace Services
 
         public bool StartRecording()
         {
-            if (SelectedCamera == null)
+            if (_videoCaptureDevice == null)
                 return false;
 
             try
             {
-                VideoCaptureDevice videoCaptureDevice = new VideoCaptureDevice(SelectedCamera.MonikerString);
                 // TODO add logic to set desired framesize and events for new frame
-                videoCaptureDevice.Start();
+                _videoCaptureDevice.Start();
+                _videoCaptureDevice.NewFrame += NewFrameReceived;
+                _videoCaptureDevice.VideoSourceError += VideoError;
 
                 return true;
             }
@@ -71,14 +80,15 @@ namespace Services
 
         public bool StopRecording()
         {
-            if (SelectedCamera == null)
+            if (_videoCaptureDevice == null)
                 return false;
 
             try
             {
-                VideoCaptureDevice videoCaptureDevice = new VideoCaptureDevice(SelectedCamera.MonikerString);
-                videoCaptureDevice.SignalToStop();
-                videoCaptureDevice.WaitForStop();
+                _videoCaptureDevice.SignalToStop();
+                _videoCaptureDevice.WaitForStop();
+                _videoCaptureDevice.NewFrame -= NewFrameReceived;
+                _videoCaptureDevice.VideoSourceError -= VideoError;
 
                 return true;
             }
@@ -95,10 +105,31 @@ namespace Services
             get { return _selectedCamera; }
             set
             {
-                VideoCaptureDevice videoCaptureDevice = new VideoCaptureDevice(SelectedCamera.MonikerString);
-                if(!videoCaptureDevice.IsRunning)
+                if (value == null || value == _selectedCamera)
+                    return;
+
+                _videoCaptureDevice = new VideoCaptureDevice(value.MonikerString);
+                if(!_videoCaptureDevice.IsRunning)
                     _selectedCamera = value;
             }
+        }
+
+        public void Dispose()
+        {
+            if (_videoCaptureDevice != null && _videoCaptureDevice.IsRunning)
+            {
+                StopRecording();
+            }
+        }
+
+        private void NewFrameReceived(object sender, NewFrameEventArgs eventArgs)
+        {
+            _eventAggregator.PublishOnCurrentThread(eventArgs.Frame.Clone());
+        }
+
+        private void VideoError(object sender, VideoSourceErrorEventArgs eventargs)
+        {
+            _eventAggregator.PublishOnBackgroundThread("VideoDeviceError");
         }
     }
 }
