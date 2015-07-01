@@ -40,6 +40,7 @@ namespace HomeSecurityViewer
             // register services
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
+            _container.Singleton<IFileService, FtpFileService>();
             _container.Singleton<ICameraService, CameraService>();
             _container.Singleton<IImageService, ImageService>();
             _container.Singleton<ISecurityService, SecurityService>();

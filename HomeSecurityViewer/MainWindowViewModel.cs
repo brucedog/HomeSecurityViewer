@@ -91,7 +91,6 @@ namespace HomeSecurityViewer
                 using (MemoryStream ms = new MemoryStream())
                 {
                     image.Save(ms, ImageFormat.Bmp);
-                    //ms.Seek(0, SeekOrigin.Begin);
                     ms.Position = 0;
                     bi.BeginInit();
                     bi.StreamSource = ms;
