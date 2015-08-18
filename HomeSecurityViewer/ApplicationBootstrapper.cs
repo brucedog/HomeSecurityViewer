@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
+using HomeSecurityViewer.ViewModels;
 using Interfaces;
 using Services;
 

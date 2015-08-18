@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HomeSecurityViewer
+namespace HomeSecurityViewer.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindowView.xaml
+    /// Interaction logic for CameraViewerUserControl.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class CameraViewerUserControl : UserControl
     {
-        public MainWindowView()
+        public CameraViewerUserControl()
         {
             InitializeComponent();
         }

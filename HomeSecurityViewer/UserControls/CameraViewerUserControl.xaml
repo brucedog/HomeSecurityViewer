@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="HomeSecurityViewer.UserControls.CameraViewerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <StackPanel>
+        <Label x:Name="CameraName"/>
+        <Button x:Name="StartRecording" MaxWidth="100" Content="Start Recording"/>
+        <Button x:Name="StopRecording" MaxWidth="100"  Content="Stop Recording"/>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="SecurityImage" MinHeight="100" MinWidth="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding SecurityImage}"/>
+            <Image x:Name="Image" MinHeight="100" MinWidth="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding Image}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
