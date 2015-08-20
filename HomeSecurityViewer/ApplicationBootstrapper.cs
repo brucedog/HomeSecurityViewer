@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
-using HomeSecurityViewer.ViewModels;
-using Interfaces;
-using Services;
+using HomeSecurity.Interfaces;
+using HomeSecurity.Services;
+using HomeSecurity.Viewer.ViewModels;
 
-namespace HomeSecurityViewer
+namespace HomeSecurity.Viewer
 {
     public class ApplicationBootstrapper : BootstrapperBase
     {        

@@ -4,10 +4,10 @@ using System.Drawing;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Caliburn.Micro;
-using DataTransferObjects;
-using Interfaces;
+using HomeSecurity.DataTransferObjects;
+using HomeSecurity.Interfaces;
 
-namespace Services
+namespace HomeSecurity.Services
 {
     public class CameraService : ICameraService
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataTransferObjects;
+using HomeSecurity.DataTransferObjects;
 
-namespace Interfaces
+namespace HomeSecurity.Interfaces
 {
     public interface ICameraService : IDisposable
     {

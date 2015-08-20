@@ -6,12 +6,12 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
-using DataTransferObjects;
-using Interfaces;
+using HomeSecurity.DataTransferObjects;
+using HomeSecurity.Interfaces;
 using Color = System.Drawing.Color;
 using Pen = System.Drawing.Pen;
 
-namespace HomeSecurityViewer.ViewModels
+namespace HomeSecurity.Viewer.ViewModels
 {
     public sealed class CameraViewerViewModel : Screen, IHandle<Bitmap>, IHandle<SecurityImageEventMessage>
     {

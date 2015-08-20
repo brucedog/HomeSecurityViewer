@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Caliburn.Micro;
-using DataTransferObjects;
-using Interfaces;
+using HomeSecurity.DataTransferObjects;
+using HomeSecurity.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Services;
+using HomeSecurity.Services;
 
-namespace UnitTests
+namespace ServicesUnitTests
 {
     /// <summary>
     /// Summary description for CameraServiceUnitTests

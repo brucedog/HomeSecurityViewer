@@ -7,8 +7,8 @@
     <ProjectGuid>{7C426F6A-5FE0-4612-9CBF-7BB78A9333A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Interfaces</RootNamespace>
-    <AssemblyName>Interfaces</AssemblyName>
+    <RootNamespace>HomeSecurity.Interfaces</RootNamespace>
+    <AssemblyName>HomeSecurity.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

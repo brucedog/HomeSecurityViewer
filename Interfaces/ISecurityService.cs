@@ -1,4 +1,4 @@
-﻿namespace Interfaces
+﻿namespace HomeSecurity.Interfaces
 {
     public interface ISecurityService
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using Caliburn.Micro;
-using DataTransferObjects;
-using Interfaces;
+using HomeSecurity.DataTransferObjects;
+using HomeSecurity.Interfaces;
 
-namespace Services
+namespace HomeSecurity.Services
 {
     public class SecurityService : ISecurityService, IHandle<Bitmap>
     {

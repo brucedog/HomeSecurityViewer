@@ -1,4 +1,4 @@
-﻿namespace DataTransferObjects
+﻿namespace HomeSecurity.DataTransferObjects
 {
     public class CameraDevice
     {

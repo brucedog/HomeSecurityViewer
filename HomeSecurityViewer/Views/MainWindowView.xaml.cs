@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HomeSecurityViewer.Views
+namespace HomeSecurity.Viewer.Views
 {
     /// <summary>
     /// Interaction logic for MainWindowView.xaml

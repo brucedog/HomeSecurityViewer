@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace DataTransferObjects
+namespace HomeSecurity.DataTransferObjects
 {
     /// <summary>
     /// Class is used to display rectangle around a persons face.

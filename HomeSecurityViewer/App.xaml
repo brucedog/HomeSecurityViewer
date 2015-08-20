@@ -1,12 +1,12 @@
-﻿<Application x:Class="HomeSecurityViewer.App"
+﻿<Application x:Class="HomeSecurity.Viewer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:homeSecurityViewer="clr-namespace:HomeSecurityViewer">
+             xmlns:viewer="clr-namespace:HomeSecurity.Viewer">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <homeSecurityViewer:ApplicationBootstrapper x:Key="bootstrapper" />
+                    <viewer:ApplicationBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

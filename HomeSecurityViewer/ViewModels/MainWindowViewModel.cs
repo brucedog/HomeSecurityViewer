@@ -1,20 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Caliburn.Micro;
-using DataTransferObjects;
-using Interfaces;
-using Color = System.Drawing.Color;
-using Pen = System.Drawing.Pen;
+using HomeSecurity.DataTransferObjects;
+using HomeSecurity.Interfaces;
 
-namespace HomeSecurityViewer.ViewModels
+namespace HomeSecurity.Viewer.ViewModels
 {
     public sealed class MainWindowViewModel : Screen, IHandle<string>
     {

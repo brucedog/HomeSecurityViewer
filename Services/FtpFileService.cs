@@ -4,9 +4,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Interfaces;
+using HomeSecurity.Interfaces;
 
-namespace Services
+namespace HomeSecurity.Services
 {
     public class FtpFileService : IFileService
     {

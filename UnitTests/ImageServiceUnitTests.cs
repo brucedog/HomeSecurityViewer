@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 using Caliburn.Micro;
-using Interfaces;
+using HomeSecurity.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Services;
+using HomeSecurity.Services;
 
-namespace UnitTests
+namespace ServicesUnitTests
 {
     [TestClass]
     public class ImageServiceUnitTests

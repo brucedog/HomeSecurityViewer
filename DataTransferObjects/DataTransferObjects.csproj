@@ -7,8 +7,8 @@
     <ProjectGuid>{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataTransferObjects</RootNamespace>
-    <AssemblyName>DataTransferObjects</AssemblyName>
+    <RootNamespace>HomeSecurity.DataTransferObjects</RootNamespace>
+    <AssemblyName>HomeSecurity.DataTransferObjects</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

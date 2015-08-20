@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{AEF75641-D930-4112-8646-C62FC12E3694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{5AD08D5D-9276-40BB-B24E-F624B6CA044D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesUnitTests", "UnitTests\ServicesUnitTests.csproj", "{5AD08D5D-9276-40BB-B24E-F624B6CA044D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{B73DFB23-C5AB-45C4-8FEC-C498726BCBA9}"
 EndProject

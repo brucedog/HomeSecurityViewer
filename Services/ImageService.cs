@@ -3,9 +3,9 @@ using System.Drawing;
 using Accord.Vision.Detection;
 using Accord.Vision.Detection.Cascades;
 using Caliburn.Micro;
-using Interfaces;
+using HomeSecurity.Interfaces;
 
-namespace Services
+namespace HomeSecurity.Services
 {
     public class ImageService : IImageService
     {
