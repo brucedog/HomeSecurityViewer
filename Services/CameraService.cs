@@ -6,6 +6,7 @@ using AForge.Video.DirectShow;
 using Caliburn.Micro;
 using HomeSecurity.DataTransferObjects;
 using HomeSecurity.Interfaces;
+using HomeSecurity.Interfaces.Services;
 
 namespace HomeSecurity.Services
 {

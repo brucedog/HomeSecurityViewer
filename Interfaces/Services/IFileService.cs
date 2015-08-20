@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Threading.Tasks;
 
-namespace HomeSecurity.Interfaces
+namespace HomeSecurity.Interfaces.Services
 {
     /// <summary>
     /// Interface for handling the uploading/backing up of files

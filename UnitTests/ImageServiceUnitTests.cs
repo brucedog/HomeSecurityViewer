@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Caliburn.Micro;
 using HomeSecurity.Interfaces;
+using HomeSecurity.Interfaces.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using HomeSecurity.Services;

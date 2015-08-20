@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace HomeSecurity.Interfaces
+namespace HomeSecurity.Interfaces.Services
 {
     public interface IImageService
     {
