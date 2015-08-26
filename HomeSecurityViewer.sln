@@ -1,5 +1,5 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+Microsoft Visual Studio Solution File, Format Version 14.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeSecurityViewer", "HomeSecurityViewer\HomeSecurityViewer.csproj", "{1DDFF804-A7B0-4CE7-95AD-CF33E080879F}"
 EndProject

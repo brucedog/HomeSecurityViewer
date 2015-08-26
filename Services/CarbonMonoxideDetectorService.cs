@@ -1,5 +1,4 @@
-﻿using HomeSecurity.Interfaces;
-using HomeSecurity.Interfaces.Services;
+﻿using HomeSecurity.Interfaces.Services;
 
 namespace HomeSecurity.Services
 {
