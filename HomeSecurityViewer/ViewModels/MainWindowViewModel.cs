@@ -40,7 +40,7 @@ namespace HomeSecurity.Viewer.ViewModels
         {
             return Task.Run(() =>
                             {
-                                IList<CameraDevice> devices = _cameraService.GetAvailableDevices();
+                                IList<CameraDevice> devices = _cameraService.ConnectedCameras;
                                 Dispatcher.CurrentDispatcher.Invoke(() =>
                                                                     {
                                                                         AvailableCameraDevices = new BindableCollection<CameraDevice>(devices);

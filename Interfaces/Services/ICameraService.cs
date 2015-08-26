@@ -7,30 +7,22 @@ namespace HomeSecurity.Interfaces.Services
     public interface ICameraService : IDisposable
     {
         /// <summary>
-        /// Gets the available camera devices.
+        /// Starts recording camera.
         /// </summary>
-        /// <returns>List of available camera devices</returns>
-        IList<CameraDevice> GetAvailableDevices();
+        void StartRecording(string monikerString);
 
         /// <summary>
-        /// Starts recording if a camera is selected.
-        /// </summary>
-        /// <returns>false if no camera is selected</returns>
-        bool StartRecording();
-
-        /// <summary>
-        /// Stops recording the selected camera.
+        /// Stops recording camera.
         /// </summary>
         /// <returns></returns>
-        bool StopRecording();
+        void StopRecording(string monikerString);
 
         /// <summary>
-        /// Gets or sets the selected camera.
-        /// Selected camera cannot be change until the camera is stopped.
+        /// Gets or sets the connected cameras.
         /// </summary>
         /// <value>
-        /// The selected camera.
+        /// The connected cameras.
         /// </value>
-        CameraDevice SelectedCamera { get; set; }
+        List<CameraDevice> ConnectedCameras { get; }
     }
 }

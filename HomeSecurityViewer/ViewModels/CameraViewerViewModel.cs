@@ -60,17 +60,17 @@ namespace HomeSecurity.Viewer.ViewModels
         }
 
 
-        public void StartRecording()
-        {
-            _cameraService.SelectedCamera = _cameraDevice;
-            _cameraService.StartRecording();
-        }
-
-        public void StopRecording()
-        {
-            _cameraService.SelectedCamera = _cameraDevice;
-            _cameraService.StopRecording();
-        }
+//        public void StartRecording()
+//        {
+//            _cameraService.SelectedCamera = _cameraDevice;
+//            _cameraService.StartRecording();
+//        }
+//
+//        public void StopRecording()
+//        {
+//            _cameraService.SelectedCamera = _cameraDevice;
+//            _cameraService.StopRecording();
+//        }
 
         public void Handle(Bitmap image)
         {

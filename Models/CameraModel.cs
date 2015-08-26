@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using AForge.Video.DirectShow;
 using HomeSecurity.Interfaces.Models;
 
@@ -13,8 +16,14 @@ namespace HomeSecurityModels
             FriendlyName = friendlyName;
             MonikerString = monikerString;
             _videoCaptureDevice = new VideoCaptureDevice(MonikerString);
+            FrameSizes = _videoCaptureDevice.VideoCapabilities.Select(s=> s.FrameSize).ToList();
+            DefaultSelectedFrameSize();
         }
-        
+
+        public List<Size> FrameSizes { get; private set; }
+
+        public Size SelectedFrameSize { get; private set; }
+
         public string FriendlyName { get; private set; }
         
         public string MonikerString { get; private set; }
@@ -30,6 +39,7 @@ namespace HomeSecurityModels
             {
                 
                 IsRunning = true;
+                _videoCaptureDevice.VideoResolution = _videoCaptureDevice.VideoCapabilities.First(f=>f.FrameSize == SelectedFrameSize);
                 _videoCaptureDevice.Start();
                 // TODO figure out frames should be passed to service etc
 //                _videoCaptureDevice.NewFrame += NewFrameReceived;
@@ -58,10 +68,33 @@ namespace HomeSecurityModels
             }
         }
 
+        public void SetFrameSize(Size frameSize)
+        {
+            Size userSelectedSize = FrameSizes.FirstOrDefault(f => (f.Height == frameSize.Height && f.Width == frameSize.Width));
+            if (userSelectedSize == null)
+                DefaultSelectedFrameSize();
+        }
+
         public void Dispose()
         {
             StopRecording();
             _videoCaptureDevice = null;
+        }
+
+        /// <summary>
+        /// Defaults the size of the selected frame to the largest size.
+        /// </summary>
+        private void DefaultSelectedFrameSize()
+        {
+            Size largestSize = new Size();
+            foreach (Size frameSize in FrameSizes)
+            {
+                if (largestSize.Height <= frameSize.Height
+                    && largestSize.Width <= frameSize.Width)
+                    largestSize = frameSize;
+            }
+
+            SelectedFrameSize = largestSize;
         }
     }
 }

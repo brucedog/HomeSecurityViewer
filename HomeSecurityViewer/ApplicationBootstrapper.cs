@@ -46,6 +46,8 @@ namespace HomeSecurity.Viewer
             _container.Singleton<ICameraService, CameraService>();
             _container.Singleton<IImageService, ImageService>();
             _container.Singleton<ISecurityService, SecurityService>();
+            var test = _container.GetInstance<IEventAggregator>();
+            _container.RegisterInstance(typeof(CameraService), null, new CameraService(test));
             // register viewmodels
             _container.Singleton<MainWindowViewModel, MainWindowViewModel>();
         }

@@ -1,35 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Caliburn.Micro;
 using HomeSecurity.DataTransferObjects;
-using HomeSecurity.Interfaces;
+using HomeSecurity.Interfaces.Models;
 using HomeSecurity.Interfaces.Services;
+using HomeSecurityModels;
 
 namespace HomeSecurity.Services
 {
     public class CameraService : ICameraService
     {
-        private CameraDevice _selectedCamera;
-        private VideoCaptureDevice _videoCaptureDevice;
+        private List<ICameraModel> _cameraModels = new List<ICameraModel>();
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<CameraDevice> cameraDevices = new List<CameraDevice>();
+
+
+//        #region constructor for unit testing
+//        public CameraService(IEventAggregator eventAggregator, List<CameraDevice> cameraDevices, List<ICameraModel> cameraModels)
+//        {
+//            _eventAggregator = eventAggregator;
+//            cameraDevices.AddRange(cameraDevices);
+//            _cameraModels.AddRange(cameraModels);
+//        }
+//        #endregion
 
         public CameraService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            GetAvailableDevices();
         }
 
-        public IList<CameraDevice> GetAvailableDevices()
+        private void GetAvailableDevices()
         {
-            List<CameraDevice> cameraDevices = new List<CameraDevice>();
             try
             {
                 FilterInfoCollection filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
                 if (filterInfoCollection.Count == 0)
-                    return cameraDevices;
+                    return;
 
                 foreach (FilterInfo device in filterInfoCollection)
                 {
@@ -37,12 +49,16 @@ namespace HomeSecurity.Services
 
                     // only add device if it has video capabilities
                     if (videoCaptureDevice.VideoCapabilities.Length > 0)
-                    {                        
+                    {
+                        ICameraModel cameraModel = new CameraModel(device.Name, device.MonikerString);
+                        _cameraModels.Add(cameraModel);
+
                         cameraDevices.Add(
                             new CameraDevice
                             {
                                 Name = device.Name,
-                                MonikerString = device.MonikerString
+                                MonikerString = device.MonikerString,
+                                AvailableFrameSizes = cameraModel.FrameSizes
                             });
                     }
                 }
@@ -50,89 +66,32 @@ namespace HomeSecurity.Services
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                
-                return cameraDevices;
-            }
-
-            return cameraDevices;            
+            }          
         }
 
-        public bool StartRecording()
+        public void StartRecording(string monikerString)
         {
-            if (_videoCaptureDevice == null)
-                return false;
+            ICameraModel camera = _cameraModels.FirstOrDefault(f => f.MonikerString.Equals(monikerString));
 
-            try
-            {
-                // TODO add logic to set desired framesize and events for new frame
-                _videoCaptureDevice.Start();
-                _videoCaptureDevice.NewFrame += NewFrameReceived;
-                _videoCaptureDevice.VideoSourceError += VideoError;
-
-                return true;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-
-            return false;
+            camera?.StartRecording();
         }
 
-        public bool StopRecording()
+        public void StopRecording(string monikerString)
         {
-            if (_videoCaptureDevice == null)
-                return false;
+            ICameraModel camera = _cameraModels.FirstOrDefault(f => f.MonikerString.Equals(monikerString));
 
-            try
-            {
-                _videoCaptureDevice.SignalToStop();
-                _videoCaptureDevice.WaitForStop();
-                _videoCaptureDevice.NewFrame -= NewFrameReceived;
-                _videoCaptureDevice.VideoSourceError -= VideoError;
-
-                return true;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-
-            return false;
+            camera?.StopRecording();
         }
 
-        public CameraDevice SelectedCamera
-        {
-            get { return _selectedCamera; }
-            set
-            {
-                if (value == null || value == _selectedCamera)
-                    return;
-
-                _videoCaptureDevice = new VideoCaptureDevice(value.MonikerString);
-                if(!_videoCaptureDevice.IsRunning)
-                    _selectedCamera = value;
-            }
-        }
+        public List<CameraDevice> ConnectedCameras => cameraDevices;
 
         public void Dispose()
         {
-            if (_videoCaptureDevice != null && _videoCaptureDevice.IsRunning)
+            foreach (ICameraModel cameraModel in _cameraModels)
             {
-                StopRecording();
+                cameraModel.StopRecording();
             }
-        }
-
-        private void NewFrameReceived(object sender, NewFrameEventArgs eventArgs)
-        {
-            Bitmap image = (Bitmap) eventArgs.Frame.Clone();
-
-            _eventAggregator.PublishOnCurrentThread(image);
-        }
-
-        private void VideoError(object sender, VideoSourceErrorEventArgs eventargs)
-        {
-            _eventAggregator.PublishOnBackgroundThread("VideoDeviceError");
+            _cameraModels = null;
         }
     }
 }
