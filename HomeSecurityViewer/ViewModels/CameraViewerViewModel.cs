@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
@@ -11,6 +12,7 @@ using HomeSecurity.Interfaces;
 using HomeSecurity.Interfaces.Services;
 using Color = System.Drawing.Color;
 using Pen = System.Drawing.Pen;
+using Size = System.Drawing.Size;
 
 namespace HomeSecurity.Viewer.ViewModels
 {
@@ -21,12 +23,26 @@ namespace HomeSecurity.Viewer.ViewModels
         private readonly ICameraService _cameraService;
         private readonly CameraDevice _cameraDevice;
         private BitmapImage securityImage;
+        private string _selectedResolution;
+        private BindableCollection<string> _resolutions;
 
         public CameraViewerViewModel(ICameraService cameraService, CameraDevice cameraDevice)
         {
             _cameraService = cameraService;
             _cameraDevice = cameraDevice;
             CameraName = _cameraDevice.Name;
+            Resolutions =  CreatePresentableCameraResolutions(cameraDevice.AvailableFrameSizes);
+        }
+
+        private BindableCollection<string> CreatePresentableCameraResolutions(List<Size> availableFrameSizes)
+        {
+            BindableCollection<string> resolutions = new BindableCollection<string>();
+
+            foreach (Size availableFrameSize in availableFrameSizes)
+            {
+                resolutions.Add($"{availableFrameSize.Width} X {availableFrameSize.Height}");
+            }
+            return resolutions;
         }
 
         public string CameraName
@@ -59,18 +75,37 @@ namespace HomeSecurity.Viewer.ViewModels
             }
         }
 
+        public BindableCollection<string> Resolutions
+        {
+            get { return _resolutions; }
+            set
+            {
+                _resolutions = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
-//        public void StartRecording()
-//        {
-//            _cameraService.SelectedCamera = _cameraDevice;
-//            _cameraService.StartRecording();
-//        }
-//
-//        public void StopRecording()
-//        {
-//            _cameraService.SelectedCamera = _cameraDevice;
-//            _cameraService.StopRecording();
-//        }
+        public string SelectedResolution
+        {
+            get { return _selectedResolution; }
+            set
+            {
+                _selectedResolution = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        //        public void StartRecording()
+        //        {
+        //            _cameraService.SelectedCamera = _cameraDevice;
+        //            _cameraService.StartRecording();
+        //        }
+        //
+        //        public void StopRecording()
+        //        {
+        //            _cameraService.SelectedCamera = _cameraDevice;
+        //            _cameraService.StopRecording();
+        //        }
 
         public void Handle(Bitmap image)
         {

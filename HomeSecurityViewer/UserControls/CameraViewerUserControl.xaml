@@ -6,8 +6,22 @@
              mc:Ignorable="d" >
     <StackPanel>
         <Label x:Name="CameraName"/>
-        <Button x:Name="StartRecording" MaxWidth="100" Content="Start Recording"/>
-        <Button x:Name="StopRecording" MaxWidth="100"  Content="Stop Recording"/>
+        <Button x:Name="StartRecording" MaxWidth="100" ToolTip="Starts recording camera">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Fill="Red" Width="10" Height="10"/>
+                <TextBlock  Text="Record"/>
+            </StackPanel>
+        </Button>
+        
+        <Button x:Name="StopRecording" MaxWidth="100" ToolTip="Stops recording">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Fill="Black" Width="10" Height="10" />
+                <Label Content="Stop Recording" />
+            </StackPanel>
+        </Button>
+
+        <ComboBox x:Name="Resolutions" MaxWidth="100" ToolTip="Available Camera Resolution"/>
+        
         <StackPanel Orientation="Horizontal">
             <Image x:Name="SecurityImage" MinHeight="100" MinWidth="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding SecurityImage}"/>
             <Image x:Name="Image" MinHeight="100" MinWidth="100" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding Image}"/>

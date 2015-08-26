@@ -9,6 +9,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <ComboBox 
+                Margin="5"
                 Padding="5"
                 MinWidth="200"
                 MaxWidth="200" MaxHeight="100" 
@@ -17,7 +18,18 @@
                 DisplayMemberPath="Name" 
                 SelectedValuePath="{Binding SelectedCameraDevice}"                   
                 SelectedValue="{Binding SelectedCameraDevice}"/>
-            <Button x:Name="AddCamera" Content="Add Camera Viewer" Padding="5"/>
+
+            <Button x:Name="AddCamera" Padding="5" Margin="5" ToolTip="Add Camera">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Add Camera" />
+                    <Path Stretch="Fill"
+                          Fill="Green"
+                          Stroke="{x:Null}"
+                          StrokeThickness="0.5"
+                          Data="M3.875,0 L5.125,0 5.125,3.875 9,3.875 9,5.125 5.125,5.125 5.125,9 3.875,9 3.875,5.125 0,5.125 0,3.875 3.875,3.875 3.875,0 z" Height="14" />
+                </StackPanel>
+            </Button>
+            
         </StackPanel>
         <StackPanel Grid.Row="1">
             <!--Other stuff?-->
