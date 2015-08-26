@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 14.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeSecurityViewer", "HomeSecurityViewer\HomeSecurityViewer.csproj", "{1DDFF804-A7B0-4CE7-95AD-CF33E080879F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{7C426F6A-5FE0-4612-9CBF-7BB78A9333A4}"
@@ -21,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{9F055A6A-92FD-4B89-8A4A-0877251C8827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelUnitTests", "ModelUnitTests\ModelUnitTests.csproj", "{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,11 +56,16 @@ Global
 		{9F055A6A-92FD-4B89-8A4A-0877251C8827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F055A6A-92FD-4B89-8A4A-0877251C8827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F055A6A-92FD-4B89-8A4A-0877251C8827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5AD08D5D-9276-40BB-B24E-F624B6CA044D} = {AEF75641-D930-4112-8646-C62FC12E3694}
+		{6616B4E0-D670-4DA1-A1D9-1EABD6E4FB2A} = {AEF75641-D930-4112-8646-C62FC12E3694}
 	EndGlobalSection
 EndGlobal

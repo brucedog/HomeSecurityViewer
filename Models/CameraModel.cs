@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,11 +13,16 @@ namespace HomeSecurityModels
         private VideoCaptureDevice _videoCaptureDevice;
          
         public CameraModel(string friendlyName, string monikerString)
+            :this (friendlyName, monikerString, new VideoCaptureDevice(monikerString))
         {
+        }
+
+        public CameraModel(string friendlyName, string monikerString, VideoCaptureDevice videoCaptureDevice)
+        {
+            _videoCaptureDevice = videoCaptureDevice;
             FriendlyName = friendlyName;
             MonikerString = monikerString;
-            _videoCaptureDevice = new VideoCaptureDevice(MonikerString);
-            FrameSizes = _videoCaptureDevice.VideoCapabilities.Select(s=> s.FrameSize).ToList();
+            FrameSizes = _videoCaptureDevice?.VideoCapabilities.Select(s => s.FrameSize).ToList() ?? new List<Size>();
             DefaultSelectedFrameSize();
         }
 
@@ -37,7 +43,6 @@ namespace HomeSecurityModels
             
             try
             {
-                
                 IsRunning = true;
                 _videoCaptureDevice.VideoResolution = _videoCaptureDevice.VideoCapabilities.First(f=>f.FrameSize == SelectedFrameSize);
                 _videoCaptureDevice.Start();
@@ -70,8 +75,8 @@ namespace HomeSecurityModels
 
         public void SetFrameSize(Size frameSize)
         {
-            Size userSelectedSize = FrameSizes.FirstOrDefault(f => (f.Height == frameSize.Height && f.Width == frameSize.Width));
-            if (userSelectedSize == null)
+            Size userSelectedSize = FrameSizes.FirstOrDefault(f => f.Height == frameSize.Height && f.Width == frameSize.Width);
+            if (userSelectedSize.IsEmpty)
                 DefaultSelectedFrameSize();
         }
 
