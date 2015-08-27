@@ -73,15 +73,15 @@
     <Compile Include="SmokeDetectorServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
+    <ProjectReference Include="..\..\DataTransferObjects\DataTransferObjects.csproj">
       <Project>{B220CE4A-6F2D-4372-AA48-18A4F6F42F84}</Project>
       <Name>DataTransferObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
       <Project>{7C426F6A-5FE0-4612-9CBF-7BB78A9333A4}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
+    <ProjectReference Include="..\..\Services\Services.csproj">
       <Project>{B73DFB23-C5AB-45C4-8FEC-C498726BCBA9}</Project>
       <Name>Services</Name>
     </ProjectReference>

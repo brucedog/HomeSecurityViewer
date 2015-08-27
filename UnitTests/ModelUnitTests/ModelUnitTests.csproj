@@ -65,11 +65,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
       <Project>{7C426F6A-5FE0-4612-9CBF-7BB78A9333A4}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\..\Models\Models.csproj">
       <Project>{9F055A6A-92FD-4B89-8A4A-0877251C8827}</Project>
       <Name>Models</Name>
     </ProjectReference>
